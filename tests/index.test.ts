@@ -95,6 +95,13 @@ test('colors', () => {
       '\x1b[22m' +
       '\x1b[39m',
   )
+
+  // Test nested color functions
+  expect(c.red(c.bold(str))).toBe('\x1b[31m\x1b[1m' + str + '\x1b[22m\x1b[39m')
+  expect(c.bold(c.red(str))).toBe('\x1b[1m\x1b[31m' + str + '\x1b[39m\x1b[22m')
+  expect(c.red(c.bold(c.underline(str)))).toBe(
+    '\x1b[31m\x1b[1m\x1b[4m' + str + '\x1b[24m\x1b[22m\x1b[39m',
+  )
 })
 
 test('non-color environments', () => {

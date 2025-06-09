@@ -28,6 +28,13 @@ function createStyleFunction(styleName: string): ColorFunction {
       return text
     }
 
+    // Check if the text already has ANSI codes
+    const hasAnsiCodes = /\u001b\[[0-9]+m/.test(text)
+    if (hasAnsiCodes) {
+      // If the text already has ANSI codes, wrap it with our style
+      return `${style.open}${text}${style.close}`
+    }
+
     return `${style.open}${text}${style.close}`
   }) as ColorFunction
 
