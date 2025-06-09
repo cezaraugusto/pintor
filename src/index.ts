@@ -9,10 +9,11 @@ type ColorFunction = StyleFunction & {
   [key: string]: StyleFunction
 }
 
-// Main interface for the colors object that provides text styling capabilities
-interface Colors {
+// Create a type that represents the actual colors object structure
+type ColorsObject = {
   styles: Record<string, AnsiStyle>
-  [key: string]: ColorFunction | unknown
+} & {
+  [K in keyof typeof ansiStyles]: ColorFunction
 }
 
 function createStyleFunction(styleName: string): ColorFunction {
@@ -48,10 +49,10 @@ function createStyleFunction(styleName: string): ColorFunction {
   return fn
 }
 
-function createColorsObject(): Colors {
-  const colors: Colors = {
+function createColorsObject(): ColorsObject {
+  const colors = {
     styles: ansiStyles,
-  }
+  } as ColorsObject
 
   // Add style functions to the colors object
   for (const styleName of Object.keys(ansiStyles)) {
