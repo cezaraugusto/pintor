@@ -146,3 +146,17 @@ test('force color', () => {
   expect(c.red(str)).toBe(str)
   expect(c.bold(str)).toBe(str)
 })
+
+test('chained styles compose like nested calls', () => {
+  process.env.FORCE_COLOR = '1'
+  expect(colors.bold.magenta(str)).toBe(colors.bold(colors.magenta(str)))
+  expect(colors.underline.bold.red(str)).toBe(
+    colors.underline(colors.bold(colors.red(str)))
+  )
+  // The outer style must actually be applied
+  expect(colors.bold.magenta(str)).not.toBe(colors.magenta(str))
+
+  // Chaining respects disabled colors
+  process.env.FORCE_COLOR = '0'
+  expect(colors.bold.magenta(str)).toBe(str)
+})
