@@ -1,11 +1,13 @@
 [npm-version-image]: https://img.shields.io/npm/v/pintor.svg?color=0971fe
 [npm-version-url]: https://www.npmjs.com/package/pintor
+[npm-downloads-image]: https://img.shields.io/npm/dm/pintor.svg?color=2ecc40
+[npm-downloads-url]: https://www.npmjs.com/package/pintor
 [action-image]: https://github.com/cezaraugusto/pintor/actions/workflows/ci.yml/badge.svg?branch=main
 [action-url]: https://github.com/cezaraugusto/pintor/actions
 
-# pintor 🎨 [![Version][npm-version-image]][npm-version-url] [![workflow][action-image]][action-url]
+> Zero-dependency library for providing color functions for terminal text
 
-A lightweight, zero-dependency library for adding colors to the terminal output. Useful for CLI applications, logging, and development tools.
+# pintor [![Version][npm-version-image]][npm-version-url] [![Downloads][npm-downloads-image]][npm-downloads-url] [![workflow][action-image]][action-url]
 
 ## Features
 
@@ -57,4 +59,4 @@ console.log(colors.underline('This is underlined text'))
 
 ## License
 
-MIT (c) Cezar Augusto
+MIT (c) Cezar Augusto.
