@@ -62,7 +62,7 @@ const ansiEscapeCodes: Record<string, [number, number]> = {
   bgBrightBlue: [104, 49],
   bgBrightMagenta: [105, 49],
   bgBrightCyan: [106, 49],
-  bgBrightWhite: [107, 49],
+  bgBrightWhite: [107, 49]
 }
 
 // Map of style names to their ANSI style objects.
@@ -82,8 +82,8 @@ for (const [styleName, [openCode, closeCode]] of escapeCodes) {
     closeRe: new RegExp(
       // Replace all special characters with their escaped version
       closeSequence.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
-      'g',
-    ),
+      'g'
+    )
   }
 }
 

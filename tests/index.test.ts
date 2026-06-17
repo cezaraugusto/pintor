@@ -1,6 +1,8 @@
-import { expect, test, vi, beforeEach } from 'vitest'
+import {expect, test, vi, beforeEach} from 'vitest'
+
 import colors from '../src/index'
-import type { WriteStream } from 'node:tty'
+
+import type {WriteStream} from 'node:tty'
 
 const str = 'string'
 
@@ -10,7 +12,7 @@ const originalStdout = process.stdout
 
 beforeEach(() => {
   // Reset environment variables
-  process.env = { ...originalEnv }
+  process.env = {...originalEnv}
   // Force colors in tests
   process.env.FORCE_COLOR = '1'
   // Mock stdout as TTY
@@ -18,8 +20,8 @@ beforeEach(() => {
     ...process,
     stdout: {
       ...originalStdout,
-      isTTY: true,
-    },
+      isTTY: true
+    }
   })
 })
 
@@ -50,57 +52,59 @@ const c = colors as unknown as {
 
 test('colors', () => {
   // Test basic styles
-  expect(c.bold(str)).toBe('\x1B[1m' + str + '\x1B[22m')
-  expect(c.italic(str)).toBe('\x1B[3m' + str + '\x1B[23m')
-  expect(c.underline(str)).toBe('\x1B[4m' + str + '\x1B[24m')
-  expect(c.strikethrough(str)).toBe('\x1B[9m' + str + '\x1B[29m')
-  expect(c.inverse(str)).toBe('\x1B[7m' + str + '\x1B[27m')
+  expect(c.bold(str)).toBe(`\x1B[1m${str}\x1B[22m`)
+  expect(c.italic(str)).toBe(`\x1B[3m${str}\x1B[23m`)
+  expect(c.underline(str)).toBe(`\x1B[4m${str}\x1B[24m`)
+  expect(c.strikethrough(str)).toBe(`\x1B[9m${str}\x1B[29m`)
+  expect(c.inverse(str)).toBe(`\x1B[7m${str}\x1B[27m`)
 
   // Test colors
-  expect(c.white(str)).toBe('\x1B[37m' + str + '\x1B[39m')
-  expect(c.grey(str)).toBe('\x1B[90m' + str + '\x1B[39m')
-  expect(c.black(str)).toBe('\x1B[30m' + str + '\x1B[39m')
-  expect(c.blue(str)).toBe('\x1B[34m' + str + '\x1B[39m')
-  expect(c.cyan(str)).toBe('\x1B[36m' + str + '\x1B[39m')
-  expect(c.green(str)).toBe('\x1B[32m' + str + '\x1B[39m')
-  expect(c.magenta(str)).toBe('\x1B[35m' + str + '\x1B[39m')
-  expect(c.red(str)).toBe('\x1B[31m' + str + '\x1B[39m')
-  expect(c.yellow(str)).toBe('\x1B[33m' + str + '\x1B[39m')
+  expect(c.white(str)).toBe(`\x1B[37m${str}\x1B[39m`)
+  expect(c.grey(str)).toBe(`\x1B[90m${str}\x1B[39m`)
+  expect(c.black(str)).toBe(`\x1B[30m${str}\x1B[39m`)
+  expect(c.blue(str)).toBe(`\x1B[34m${str}\x1B[39m`)
+  expect(c.cyan(str)).toBe(`\x1B[36m${str}\x1B[39m`)
+  expect(c.green(str)).toBe(`\x1B[32m${str}\x1B[39m`)
+  expect(c.magenta(str)).toBe(`\x1B[35m${str}\x1B[39m`)
+  expect(c.red(str)).toBe(`\x1B[31m${str}\x1B[39m`)
+  expect(c.yellow(str)).toBe(`\x1B[33m${str}\x1B[39m`)
 
   // Test bright colors
-  expect(c.brightWhite(str)).toBe('\x1B[97m' + str + '\x1B[39m')
-  expect(c.brightBlue(str)).toBe('\x1B[94m' + str + '\x1B[39m')
-  expect(c.brightCyan(str)).toBe('\x1B[96m' + str + '\x1B[39m')
-  expect(c.brightGreen(str)).toBe('\x1B[92m' + str + '\x1B[39m')
-  expect(c.brightMagenta(str)).toBe('\x1B[95m' + str + '\x1B[39m')
-  expect(c.brightRed(str)).toBe('\x1B[91m' + str + '\x1B[39m')
-  expect(c.brightYellow(str)).toBe('\x1B[93m' + str + '\x1B[39m')
+  expect(c.brightWhite(str)).toBe(`\x1B[97m${str}\x1B[39m`)
+  expect(c.brightBlue(str)).toBe(`\x1B[94m${str}\x1B[39m`)
+  expect(c.brightCyan(str)).toBe(`\x1B[96m${str}\x1B[39m`)
+  expect(c.brightGreen(str)).toBe(`\x1B[92m${str}\x1B[39m`)
+  expect(c.brightMagenta(str)).toBe(`\x1B[95m${str}\x1B[39m`)
+  expect(c.brightRed(str)).toBe(`\x1B[91m${str}\x1B[39m`)
+  expect(c.brightYellow(str)).toBe(`\x1B[93m${str}\x1B[39m`)
 
   // Test with newlines
-  const testStringWithNewLines = str + '\n' + str
+  const testStringWithNewLines = `${str}\n${str}`
+
   expect(c.red(testStringWithNewLines)).toBe(
-    '\x1b[31m' + str + '\n' + str + '\x1b[39m',
+    `\x1b[31m${str}\n${str}\x1b[39m`
   )
 
   // Test nested styles
-  const testStringWithNewLinesStyled = c.underline(str) + '\n' + c.bold(str)
+  const testStringWithNewLinesStyled = `${c.underline(str)}\n${c.bold(str)}`
+
   expect(c.red(testStringWithNewLinesStyled)).toBe(
     '\x1b[31m' +
-      '\x1b[4m' +
-      str +
-      '\x1b[24m' +
+      `\x1b[4m${
+      str
+      }\x1b[24m` +
       '\n' +
-      '\x1b[1m' +
-      str +
-      '\x1b[22m' +
-      '\x1b[39m',
+      `\x1b[1m${
+      str
+      }\x1b[22m` +
+      '\x1b[39m'
   )
 
   // Test nested color functions
-  expect(c.red(c.bold(str))).toBe('\x1b[31m\x1b[1m' + str + '\x1b[22m\x1b[39m')
-  expect(c.bold(c.red(str))).toBe('\x1b[1m\x1b[31m' + str + '\x1b[39m\x1b[22m')
+  expect(c.red(c.bold(str))).toBe(`\x1b[31m\x1b[1m${str}\x1b[22m\x1b[39m`)
+  expect(c.bold(c.red(str))).toBe(`\x1b[1m\x1b[31m${str}\x1b[39m\x1b[22m`)
   expect(c.red(c.bold(c.underline(str)))).toBe(
-    '\x1b[31m\x1b[1m\x1b[4m' + str + '\x1b[24m\x1b[22m\x1b[39m',
+    `\x1b[31m\x1b[1m\x1b[4m${str}\x1b[24m\x1b[22m\x1b[39m`
   )
 })
 
@@ -128,8 +132,8 @@ test('non-color environments', () => {
     ...process,
     stdout: {
       ...originalStdout,
-      isTTY: false,
-    },
+      isTTY: false
+    }
   })
   expect(c.red(str)).toBe(str)
   expect(c.bold(str)).toBe(str)
@@ -138,8 +142,8 @@ test('non-color environments', () => {
 test('force color', () => {
   // Test with FORCE_COLOR=1
   process.env.FORCE_COLOR = '1'
-  expect(c.red(str)).toBe('\x1B[31m' + str + '\x1B[39m')
-  expect(c.bold(str)).toBe('\x1B[1m' + str + '\x1B[22m')
+  expect(c.red(str)).toBe(`\x1B[31m${str}\x1B[39m`)
+  expect(c.bold(str)).toBe(`\x1B[1m${str}\x1B[22m`)
 
   // Test with FORCE_COLOR=0
   process.env.FORCE_COLOR = '0'

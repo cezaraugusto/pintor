@@ -1,6 +1,6 @@
-import { Stream } from 'stream'
+import type {Stream} from 'stream'
 
-function shouldEnableColors(stream?: Stream): boolean {
+function shouldEnableColors (stream?: Stream): boolean {
   // Check FORCE_COLOR environment variable
   if ('FORCE_COLOR' in process.env) {
     return (
@@ -45,10 +45,12 @@ function shouldEnableColors(stream?: Stream): boolean {
     if ('WT_SESSION' in process.env) {
       return true
     }
+
     // Check if running in ConEmu
     if ('ConEmuANSI' in process.env) {
       return true
     }
+
     // Check if running in VS Code's integrated terminal
     if (
       'TERM_PROGRAM' in process.env &&
@@ -65,9 +67,10 @@ function shouldEnableColors(stream?: Stream): boolean {
 
   // Check TERM environment variable
   const term = process.env.TERM || ''
+
   return /^screen|^xterm|^vt100|^rxvt|color|ansi|cygwin|linux|konsole|alacritty|kitty|wezterm|foot|contour|terminator|terminology|terminix|tilix|hyper|iterm2|mintty|st|tmux/i.test(
-    term,
+    term
   )
 }
 
-export { shouldEnableColors }
+export {shouldEnableColors}
