@@ -57,6 +57,15 @@ console.log(colors.underline('This is underlined text'))
 | **Bright Background Colors** | `bgBrightBlack`, `bgBrightRed`, `bgBrightGreen`, `bgBrightYellow`, `bgBrightBlue`, `bgBrightMagenta`, `bgBrightCyan`, `bgBrightWhite` |
 | **Text Styles**              | `bold`, `dim`, `italic`, `underline`, `overline`, `inverse`, `hidden`, `strikethrough`                                                |
 
+## Related projects
+
+* [log-md](https://github.com/cezaraugusto/log-md)
+* [mklicense](https://github.com/cezaraugusto/mklicense)
+* [prefers-yarn](https://github.com/cezaraugusto/prefers-yarn)
+* [go-git-it](https://github.com/cezaraugusto/go-git-it)
+* [git-precision](https://github.com/cezaraugusto/git-precision)
+* [isolated-deps](https://github.com/cezaraugusto/isolated-deps)
+
 ## License
 
 MIT (c) Cezar Augusto.
