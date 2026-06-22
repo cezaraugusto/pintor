@@ -4,10 +4,12 @@
 [npm-downloads-url]: https://www.npmjs.com/package/pintor
 [action-image]: https://github.com/cezaraugusto/pintor/actions/workflows/ci.yml/badge.svg?branch=main
 [action-url]: https://github.com/cezaraugusto/pintor/actions
+[provenance-image]: https://img.shields.io/badge/provenance-verified-0971fe?logo=npm&logoColor=white
+[provenance-url]: https://www.npmjs.com/package/pintor
 
 > Zero-dependency library for providing color functions for terminal text
 
-# pintor [![Version][npm-version-image]][npm-version-url] [![Downloads][npm-downloads-image]][npm-downloads-url] [![workflow][action-image]][action-url]
+# pintor [![Version][npm-version-image]][npm-version-url] [![Downloads][npm-downloads-image]][npm-downloads-url] [![workflow][action-image]][action-url] [![provenance][provenance-image]][provenance-url]
 
 ## Features
 
